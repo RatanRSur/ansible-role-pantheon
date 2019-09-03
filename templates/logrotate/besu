@@ -1,4 +1,4 @@
-/var/log/pantheon/*.log {
+/var/log/besu/*.log {
     rotate 14
     notifempty
     missingok

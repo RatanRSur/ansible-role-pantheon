@@ -1,48 +1,48 @@
 ---
 
 # User and group
-pantheon_user: pantheon
-pantheon_group: "{{ pantheon_user }}"
+besu_user: besu
+besu_group: "{{ besu_user }}"
 
 # Version to install
-pantheon_download_url: "https://bintray.com/consensys/pegasys-repo/download_file?file_path=pantheon-{{ pantheon_version }}.tar.gz"
+besu_download_url: "https://bintray.com/hyperledger/besu-repo/download_file?file_path=besu-{{ besu_version }}.tar.gz"
 
 # Directory paths
-pantheon_base_dir: "/opt/pantheon"
-pantheon_install_dir: "{{ pantheon_base_dir }}/pantheon-{{ pantheon_version }}"
-pantheon_current_dir: "{{ pantheon_base_dir }}/current"
-pantheon_config_dir: "/etc/pantheon"
-pantheon_config_template: "config.toml.j2"
-pantheon_data_dir: "{{ pantheon_base_dir }}/data"
-pantheon_log_dir: "/var/log/pantheon"
-pantheon_profile_file: "/etc/profile.d/pantheon-path.sh"
+besu_base_dir: "/opt/besu"
+besu_install_dir: "{{ besu_base_dir }}/besu-{{ besu_version }}"
+besu_current_dir: "{{ besu_base_dir }}/current"
+besu_config_dir: "/etc/besu"
+besu_config_template: "config.toml.j2"
+besu_data_dir: "{{ besu_base_dir }}/data"
+besu_log_dir: "/var/log/besu"
+besu_profile_file: "/etc/profile.d/besu-path.sh"
 
 # Managed service config
-pantheon_managed_service: true
-pantheon_systemd_template: pantheon.service.j2
-pantheon_systemd_dir: /etc/systemd/system
-pantheon_launchd_template: tech.pegasys.pantheon.plist.j2
-pantheon_launchd_dir: /Library/LaunchAgents
+besu_managed_service: true
+besu_systemd_template: besu.service.j2
+besu_systemd_dir: /etc/systemd/system
+besu_launchd_template: org.hyperledger.besu.plist.j2
+besu_launchd_dir: /Library/LaunchAgents
 
-# Pantheon config
-pantheon_host_ip: ""
-pantheon_default_ip: "127.0.0.1"
-pantheon_network: mainnet
-pantheon_sync_mode: FAST
-pantheon_log_level: INFO
-pantheon_p2p_port: 30303
-pantheon_rpc_http_enabled: "true"
-pantheon_rpc_http_host: 0.0.0.0
-pantheon_rpc_http_api: ["ADMIN", "DEBUG", "NET", "ETH", "MINER", "WEB3"]
-pantheon_rpc_ws_enabled: "true"
-pantheon_rpc_ws_host: 0.0.0.0
-pantheon_rpc_ws_port: 8546
-pantheon_metrics_host: 0.0.0.0
-pantheon_metrics_port: 9545
-pantheon_bootnodes: []
-pantheon_host_whitelist: ["*"]
-pantheon_cmdline_args: ""
-pantheon_env_opts: ""
+# Besu config
+besu_host_ip: ""
+besu_default_ip: "127.0.0.1"
+besu_network: mainnet
+besu_sync_mode: FAST
+besu_log_level: INFO
+besu_p2p_port: 30303
+besu_rpc_http_enabled: "true"
+besu_rpc_http_host: 0.0.0.0
+besu_rpc_http_api: ["ADMIN", "DEBUG", "NET", "ETH", "MINER", "WEB3"]
+besu_rpc_ws_enabled: "true"
+besu_rpc_ws_host: 0.0.0.0
+besu_rpc_ws_port: 8546
+besu_metrics_host: 0.0.0.0
+besu_metrics_port: 9545
+besu_bootnodes: []
+besu_host_whitelist: ["*"]
+besu_cmdline_args: ""
+besu_env_opts: ""
 
 # internal state to maintain idempotency
-pantheon_state_updates: []
+besu_state_updates: []

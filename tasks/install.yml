@@ -1,54 +1,54 @@
 ---
-- name: Ensure Pantheon group exists
+- name: Ensure Besu group exists
   group:
-    name: "{{ pantheon_group }}"
+    name: "{{ besu_group }}"
     state: present
   become: true
 
-- name: Create Pantheon user
+- name: Create Besu user
   user:
-    comment:  Pantheon client user
-    name: "{{ pantheon_user }}"
-    group: "{{ pantheon_group }}"
+    comment:  Besu client user
+    name: "{{ besu_user }}"
+    group: "{{ besu_group }}"
   become: true
 
 - name: Create base directory
   file:
-    path: "{{ pantheon_base_dir }}"
+    path: "{{ besu_base_dir }}"
     state: directory
-    owner: "{{ pantheon_user }}"
-    group: "{{ pantheon_group }}"
+    owner: "{{ besu_user }}"
+    group: "{{ besu_group }}"
   become: true
 
 - name: Create install directory
   file:
-    path: "{{ pantheon_install_dir }}"
+    path: "{{ besu_install_dir }}"
     state: directory
-    owner: "{{ pantheon_user }}"
-    group: "{{ pantheon_group }}"
+    owner: "{{ besu_user }}"
+    group: "{{ besu_group }}"
   become: true
 
 - name: Create log directory
   file:
-    path: "/var/log/pantheon"
+    path: "{{ besu_log_dir }}"
     state: directory
-    owner: "{{ pantheon_user }}"
-    group: "{{ pantheon_group }}"
+    owner: "{{ besu_user }}"
+    group: "{{ besu_group }}"
   become: true
 
 - name: Setup logrotate
   template:
-    src: "logrotate/pantheon"
-    dest: "/etc/logrotate.d/pantheon"
+    src: "logrotate/besu"
+    dest: "/etc/logrotate.d/besu"
   become: true
 
-- name: Extract Pantheon source to install directory
+- name: Extract Besu source to install directory
   unarchive:
-    src: "{{ pantheon_download_url }}"
+    src: "{{ besu_download_url }}"
     remote_src: true
-    dest: "{{ pantheon_install_dir }}"
-    owner: "{{ pantheon_user }}"
-    group: "{{ pantheon_group }}"
+    dest: "{{ besu_install_dir }}"
+    owner: "{{ besu_user }}"
+    group: "{{ besu_group }}"
     mode: '0775'
     extra_opts:
       - --strip-components
@@ -58,23 +58,23 @@
 
 - name: Set updated optionally to trigger a systemd restart at the end
   set_fact:
-    pantheon_state_updates: "{{ pantheon_state_updates + ['pantheon.install_dir'] }}"
+    besu_state_updates: "{{ besu_state_updates + ['besu.install_dir'] }}"
   when: extract_src is changed
 
 # will throw error the first time you install since the service isnt present
-- name: Stop Pantheon systemd service if running
+- name: Stop Besu systemd service if running
   service:
-    name: pantheon
+    name: besu
     state: stopped
   when: ( extract_src is changed ) and
-    ( pantheon_managed_service ) and
+    ( besu_managed_service ) and
     ( ansible_os_family != "Darwin" )
   become: true
   ignore_errors: true
 
 - name: Create a symlink to current
   file:
-    src: "{{ pantheon_install_dir }}/"
-    dest: "{{ pantheon_current_dir }}"
+    src: "{{ besu_install_dir }}/"
+    dest: "{{ besu_current_dir }}"
     state: link
   become: true

@@ -1,10 +1,10 @@
 ---
-- name: Add Pantheon Brew tap
+- name: Add Besu Brew tap
   homebrew_tap:
-    name: pegasyseng/pantheon
+    name: hyperledger/besu
     state: present
 
-- name: Install Pantheon via brew
+- name: Install Besu via brew
   homebrew:
-    name: pantheon
+    name: besu
     state: present

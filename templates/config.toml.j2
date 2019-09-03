@@ -1,37 +1,37 @@
 # data
-data-path="{{pantheon_data_dir}}"
-logging="{{pantheon_log_level}}"
+data-path="{{besu_data_dir}}"
+logging="{{besu_log_level}}"
 
-network="{{pantheon_network}}"
-sync-mode="{{pantheon_sync_mode}}"
-host-whitelist=[{{pantheon_host_whitelist|map('to_json')|join(',')}}]
+network="{{besu_network}}"
+sync-mode="{{besu_sync_mode}}"
+host-whitelist=[{{besu_host_whitelist|map('to_json')|join(',')}}]
 
 # rpc
-{% if pantheon_rpc_http_enabled|bool == True %}
-rpc-http-enabled={{pantheon_rpc_http_enabled}}
-rpc-http-host="{{pantheon_rpc_http_host}}"
-rpc-http-api=[{{pantheon_rpc_http_api|map('to_json')|join(',')}}]
+{% if besu_rpc_http_enabled|bool == True %}
+rpc-http-enabled={{besu_rpc_http_enabled}}
+rpc-http-host="{{besu_rpc_http_host}}"
+rpc-http-api=[{{besu_rpc_http_api|map('to_json')|join(',')}}]
 {% endif %}
 
 # ws
-{% if pantheon_rpc_ws_enabled|bool == True %}
-rpc-ws-enabled={{pantheon_rpc_ws_enabled}}
-rpc-ws-host="{{pantheon_rpc_ws_host}}"
-rpc-ws-port={{pantheon_rpc_ws_port}}
+{% if besu_rpc_ws_enabled|bool == True %}
+rpc-ws-enabled={{besu_rpc_ws_enabled}}
+rpc-ws-host="{{besu_rpc_ws_host}}"
+rpc-ws-port={{besu_rpc_ws_port}}
 {% endif %}
 
 # p2p
-{% if pantheon_host_ip != "" %}
-p2p-host="{{pantheon_host_ip}}"
+{% if besu_host_ip != "" %}
+p2p-host="{{besu_host_ip}}"
 {% endif %}
-p2p-port={{pantheon_p2p_port}}
+p2p-port={{besu_p2p_port}}
 
 # metrics
 metrics-enabled=true
-metrics-host="{{pantheon_metrics_host}}"
-metrics-port={{pantheon_metrics_port}}
+metrics-host="{{besu_metrics_host}}"
+metrics-port={{besu_metrics_port}}
 
-{% if pantheon_bootnodes|length > 0 %}
+{% if besu_bootnodes|length > 0 %}
 # bootnodes
-bootnodes={{pantheon_bootnodes}}
+bootnodes={{besu_bootnodes}}
 {% endif %}

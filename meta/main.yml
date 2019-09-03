@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  author: PegaSys
-  role_name: pantheon
-  description: Pantheon is an open-source java enterprise ethereum client
-  company: PegaSys
+  author: HLF
+  role_name: besu
+  description: Besu is an open-source java enterprise ethereum client
+  company: HLF
   license: license (Apache)
   min_ansible_version: 2.6
   platforms:
@@ -28,7 +28,8 @@ galaxy_info:
       versions:
         - all
   galaxy_tags:
-    - pantheon
+    - besu
+    - besu
     - blockchain
     - ethereum
     - enterprise
